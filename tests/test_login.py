@@ -1,6 +1,6 @@
 from pages.login_page import LoginPage
 
-def test_login_succesful(driver):
+def test_login_successful(driver):
 
     login_page = LoginPage(driver)
 
