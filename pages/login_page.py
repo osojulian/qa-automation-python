@@ -7,6 +7,7 @@ class LoginPage:
     USERNAME = (By.ID, 'user-name')
     PASSWORD = (By.ID, 'password')
     LOGIN_BUTTON = (By.ID, 'login-button')
+    ERROR_MESSAGE = (By.CSS_SELECTOR, "h3[data-test='error']")
 
     # Constructor
     def __init__(self, driver):
@@ -25,4 +26,8 @@ class LoginPage:
 
         # 3. Find the login button and click
         self.driver.find_element(*self.LOGIN_BUTTON).click()
+
+    def get_error_message(self):
+
+        return self.driver.find_element(*self.ERROR_MESSAGE).text
 
