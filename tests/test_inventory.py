@@ -14,7 +14,7 @@ def test_add_to_cart(driver):
     inventory_page = InventoryPage(driver)
 
     #Add to Cart
-    inventory_page.add_product_to_cart('labs-bike-light')
+    inventory_page.add_product_to_cart('sauce-labs-bike-light')
 
     assert int(inventory_page.get_cart_count()) == 1
 

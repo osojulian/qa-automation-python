@@ -13,7 +13,7 @@ class InventoryPage:
 
     def add_product_to_cart(self, product):
 
-        add_cart = (By.CSS_SELECTOR, f"[data-test='add-to-cart-sauce-{product}']")
+        add_cart = (By.CSS_SELECTOR, f"[data-test='add-to-cart-{product}']")
         self.driver.find_element(*add_cart).click()
 
     def get_cart_count(self):
