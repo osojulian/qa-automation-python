@@ -5,11 +5,9 @@ class InventoryPage:
     #Locators
     BADGE_CART = (By.CSS_SELECTOR, "[data-test='shopping-cart-badge']")
 
-
     #Constructor
     def __init__(self, driver):
         self.driver = driver
-
 
     def add_product_to_cart(self, product):
 
