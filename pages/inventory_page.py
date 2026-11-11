@@ -2,10 +2,10 @@ from selenium.webdriver.common.by import By
 
 class InventoryPage:
 
-    #Locators
+    # Locators
     BADGE_CART = (By.CSS_SELECTOR, "[data-test='shopping-cart-badge']")
 
-    #Constructor
+    # Constructor
     def __init__(self, driver):
         self.driver = driver
 
@@ -16,5 +16,16 @@ class InventoryPage:
 
     def get_cart_count(self):
 
-        return self.driver.find_element(*self.BADGE_CART).text
+        badges = self.driver.find_elements(*self.BADGE_CART)
+
+        if len(badges) == 0:
+
+            return 0
+        else:
+            return int(badges[0].text)
+
+    def remove_product_from_cart(self, product):
+        remove_cart = (By.CSS_SELECTOR, f"[data-test='remove-{product}']")
+        self.driver.find_element(*remove_cart).click()
+
     
