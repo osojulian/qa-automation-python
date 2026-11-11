@@ -3,7 +3,7 @@ def test_add_to_cart(inventory_page):
     # Add to Cart
     inventory_page.add_product_to_cart('sauce-labs-bike-light')
 
-    assert int(inventory_page.get_cart_count()) == 1
+    assert inventory_page.get_cart_count() == 1
 
 def test_add_two_products_to_cart(inventory_page):
         
@@ -12,7 +12,7 @@ def test_add_two_products_to_cart(inventory_page):
 
     inventory_page.add_product_to_cart('sauce-labs-bolt-t-shirt')
 
-    assert int(inventory_page.get_cart_count()) == 2
+    assert inventory_page.get_cart_count() == 2
 
 def test_remove_product_from_cart(inventory_page):
 
@@ -24,5 +24,5 @@ def test_remove_product_from_cart(inventory_page):
     # Then, remove the item and check the badge
     inventory_page.remove_product_from_cart('sauce-labs-bike-light')
 
-    assert int(inventory_page.get_cart_count()) == 0
+    assert inventory_page.get_cart_count() == 0
 
