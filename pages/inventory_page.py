@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+from pages.cart_page import CartPage
 
 class InventoryPage:
 
@@ -33,6 +34,7 @@ class InventoryPage:
     def go_to_cart(self):
 
         self.driver.find_element(*self.CART_LINK).click()
+        return CartPage(self.driver)
 
 
 

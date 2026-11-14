@@ -1,6 +1,4 @@
-from pages.cart_page import CartPage
-
-def test_name_products(inventory_page, driver):
+def test_name_products(inventory_page):
 
     # Add to Cart
     inventory_page.add_product_to_cart('sauce-labs-bike-light')
@@ -8,13 +6,11 @@ def test_name_products(inventory_page, driver):
     inventory_page.add_product_to_cart('sauce-labs-bolt-t-shirt')
 
     # Go to Cart
-    inventory_page.go_to_cart()
+    cart_page = inventory_page.go_to_cart()
 
-    cart_page = CartPage(driver)
+    actual_names = cart_page.get_product_names()
 
-    expected_names = cart_page.get_product_names()
-
-    actual_names = ['Sauce Labs Bike Light', 'Sauce Labs Bolt T-Shirt']
+    expected_names = ['Sauce Labs Bike Light', 'Sauce Labs Bolt T-Shirt']
 
     assert actual_names == expected_names
 
