@@ -1,7 +1,6 @@
-import pytest
 from pages.cart_page import CartPage
 
-def test_name_products(inventory_page):
+def test_name_products(inventory_page, driver):
 
     # Add to Cart
     inventory_page.add_product_to_cart('sauce-labs-bike-light')
@@ -11,9 +10,13 @@ def test_name_products(inventory_page):
     # Go to Cart
     inventory_page.go_to_cart()
 
-    cart_page = CartPage()
+    cart_page = CartPage(driver)
 
-    cart_page.get_product_names()
+    expected_names = cart_page.get_product_names()
+
+    actual_names = ['Sauce Labs Bike Light', 'Sauce Labs Bolt T-Shirt']
+
+    assert actual_names == expected_names
 
 
     

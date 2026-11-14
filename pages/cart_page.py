@@ -15,6 +15,6 @@ class CartPage:
 
         product_names = []
         for product in products:
-            product_names.append(product.text())
+            product_names.append(product.text)
 
         return product_names
