@@ -13,8 +13,4 @@ class CartPage:
 
         products = self.driver.find_elements(*self.NAME_PRODUCT)
 
-        product_names = []
-        for product in products:
-            product_names.append(product.text)
-
-        return product_names
+        return [product.text for product in products]
