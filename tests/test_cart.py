@@ -2,7 +2,7 @@ def test_cart_shows_added_products(inventory_page):
 
     # Add to Cart
     inventory_page.add_product_to_cart('sauce-labs-bike-light')
-    
+
     inventory_page.add_product_to_cart('sauce-labs-bolt-t-shirt')
 
     # Go to Cart
@@ -13,6 +13,3 @@ def test_cart_shows_added_products(inventory_page):
     expected_names = ['Sauce Labs Bike Light', 'Sauce Labs Bolt T-Shirt']
 
     assert actual_names == expected_names
-
-
-    

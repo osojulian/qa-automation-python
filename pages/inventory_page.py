@@ -35,7 +35,3 @@ class InventoryPage:
 
         self.driver.find_element(*self.CART_LINK).click()
         return CartPage(self.driver)
-
-
-
-    
