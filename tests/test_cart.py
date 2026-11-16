@@ -1,4 +1,4 @@
-def test_name_products(inventory_page):
+def test_name_show_added_products(inventory_page):
 
     # Add to Cart
     inventory_page.add_product_to_cart('sauce-labs-bike-light')

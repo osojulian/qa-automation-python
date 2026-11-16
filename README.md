@@ -55,9 +55,10 @@ qa-automation-python/
 
 - [x] Project setup with pytest fixtures
 - [x] Smoke test for the login page
-- [x] Page Object Model: login and inventory pages
+- [x] Page Object Model: login, inventory and cart pages
 - [x] UI tests: login (positive and negative), add and remove from cart
-- [ ] Page Object Model: cart and checkout pages
+- [x] UI tests: cart shows added products
+- [ ] Page Object Model: checkout page
 - [ ] UI tests: checkout flow
 - [ ] API tests with `requests` against [Restful-Booker](https://restful-booker.herokuapp.com/)
 - [ ] UI tests with Playwright
