@@ -5,7 +5,7 @@ class CartPage:
 
     # Locators
     NAME_PRODUCT = (By.CSS_SELECTOR, "[data-test='inventory-item-name']")
-    CHECKOUT_PRODUCT = (By.CSS_SELECTOR, "[data-test='secret_sauce']")
+    CHECKOUT_PRODUCT = (By.CSS_SELECTOR, "[data-test='checkout']")
 
     # Constructor
     def __init__(self, driver):
@@ -18,5 +18,5 @@ class CartPage:
         return [product.text for product in products]
 
     def go_to_checkout(self):
-        self.driver.find_element(*self.CHECKOUT_PRODUCT).click
+        self.driver.find_element(*self.CHECKOUT_PRODUCT).click()
         return CheckoutPage(self.driver)
