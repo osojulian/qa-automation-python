@@ -11,6 +11,6 @@ def test_checkout_with_valid_info(inventory_page):
 
     checkout_page.fill_information('Julian', 'Osorio', '98342432')
 
-    checkout_page.click_continue()
+    overview_page = checkout_page.click_continue()
 
-    assert 'checkout-step-two.html' in checkout_page.driver.current_url
+    assert overview_page.get_product_names() == ['Sauce Labs Bike Light', 'Sauce Labs Bolt T-Shirt']

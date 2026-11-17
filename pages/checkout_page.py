@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+from pages.checkout_overview_page import CheckoutOverviewPage
 
 class CheckoutPage:
 
@@ -23,3 +24,5 @@ class CheckoutPage:
     def click_continue(self):
 
         self.driver.find_element(*self.CONTINUE_BUTTON).click()
+        return CheckoutOverviewPage(self.driver)
+
