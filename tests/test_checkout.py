@@ -14,3 +14,7 @@ def test_checkout_with_valid_info(inventory_page):
     overview_page = checkout_page.click_continue()
 
     assert overview_page.get_product_names() == ['Sauce Labs Bike Light', 'Sauce Labs Bolt T-Shirt']
+
+    complete_page = overview_page.click_finish()
+
+    assert complete_page.get_confirmation_message() == 'Thank you for your order!'
