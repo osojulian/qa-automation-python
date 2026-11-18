@@ -6,7 +6,7 @@ class CheckoutOverviewPage:
 
     # Locators
     NAME_PRODUCT = (By.CSS_SELECTOR, "[data-test='inventory-item-name']")
-    FINISH_BUTTON = (By.ID, 'finish')
+    FINISH_BUTTON = (By.ID, "finish")
 
     # Constructor
     def __init__(self, driver):

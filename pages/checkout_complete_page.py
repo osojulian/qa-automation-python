@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 class CheckoutCompletePage:
 
     # Locator
-    HEADER = (By.CSS_SELECTOR, "[data-test='complete-header']")
+    COMPLETE_HEADER = (By.CSS_SELECTOR, "[data-test='complete-header']")
 
     # Constructor
     def __init__(self, driver):
@@ -11,4 +11,4 @@ class CheckoutCompletePage:
 
     def get_confirmation_message(self):
 
-        return self.driver.find_element(*self.HEADER).text
+        return self.driver.find_element(*self.COMPLETE_HEADER).text
