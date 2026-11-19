@@ -1,15 +1,12 @@
 from selenium.webdriver.common.by import By
 from pages.checkout_page import CheckoutPage
+from pages.base_page import BasePage
 
-class CartPage:
+class CartPage(BasePage):
 
     # Locators
     NAME_PRODUCT = (By.CSS_SELECTOR, "[data-test='inventory-item-name']")
     CHECKOUT_BUTTON = (By.CSS_SELECTOR, "[data-test='checkout']")
-
-    # Constructor
-    def __init__(self, driver):
-        self.driver = driver
 
     def get_product_names(self):
 
@@ -18,5 +15,7 @@ class CartPage:
         return [product.text for product in products]
 
     def go_to_checkout(self):
-        self.driver.find_element(*self.CHECKOUT_BUTTON).click()
+
+        self.click(self.CHECKOUT_BUTTON)
+
         return CheckoutPage(self.driver)

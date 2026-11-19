@@ -1,7 +1,9 @@
 from selenium.webdriver.common.by import By
 from pages.checkout_overview_page import CheckoutOverviewPage
+from pages.base_page import BasePage
 
-class CheckoutPage:
+
+class CheckoutPage(BasePage):
 
     # locators
     FIRST_NAME = (By.ID, "first-name")
@@ -9,20 +11,17 @@ class CheckoutPage:
     POSTAL_CODE = (By.ID, "postal-code")
     CONTINUE_BUTTON = (By.ID, "continue")
 
-    # Constructor
-    def __init__(self, driver):
-        self.driver = driver
-
     def fill_information(self, first_name, last_name, postal_code):
 
-        self.driver.find_element(*self.FIRST_NAME).send_keys(first_name)
+        self.type(self.FIRST_NAME, first_name)
 
-        self.driver.find_element(*self.LAST_NAME).send_keys(last_name)
+        self.type(self.LAST_NAME, last_name)
 
-        self.driver.find_element(*self.POSTAL_CODE).send_keys(postal_code)
+        self.type(self.POSTAL_CODE, postal_code)
 
     def click_continue(self):
 
-        self.driver.find_element(*self.CONTINUE_BUTTON).click()
+        self.click(self.CONTINUE_BUTTON)
+
         return CheckoutOverviewPage(self.driver)
 
