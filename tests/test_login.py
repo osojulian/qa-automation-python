@@ -16,10 +16,9 @@ def test_login_successful(driver):
     ('locked_out_user', 'secret_sauce', 'Epic sadface: Sorry, this user has been locked out.'),
     ('standard_user', 'Any word', 'Epic sadface: Username and password do not match any user in this service'),
     ('', 'secret_sauce', 'Epic sadface: Username is required'),
-
 ], ids=['locked_user', 'wrong_password', 'empty_username'])
 
-def test_login_invalid(driver, username, password, expected_message):   
+def test_login_invalid(driver, username, password, expected_message):
 
     login_page = LoginPage(driver)
 

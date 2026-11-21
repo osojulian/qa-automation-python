@@ -61,7 +61,7 @@ qa-automation-python/
 - [x] Page Object Model: checkout pages
 - [x] UI tests: full checkout flow (products and order confirmation)
 - [x] BasePage with explicit waits (`WebDriverWait`)
-- [ ] UI tests: checkout negative cases (missing information)
+- [x] UI tests: checkout negative cases (missing information)
 - [ ] API tests with `requests` against [Restful-Booker](https://restful-booker.herokuapp.com/)
 - [ ] UI tests with Playwright
 - [ ] HTML test reports
