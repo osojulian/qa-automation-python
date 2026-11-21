@@ -18,11 +18,9 @@ def test_checkout_with_empty_info(inventory_page, first_name, last_name, postal_
 
     checkout_page.fill_information(first_name, last_name, postal_code)
 
-    overview_page = checkout_page.click_continue()
+    checkout_page.click_continue()
 
-    checkout_page.get_error_message() == expected_message
-
-
+    assert checkout_page.get_error_message() == expected_message
 
 def test_checkout_with_valid_info(inventory_page):
 
