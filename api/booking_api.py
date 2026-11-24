@@ -15,3 +15,9 @@ class BookingApi:
         r = requests.get(f'{self.URL}/{booking_id}')
 
         return r
+
+    def post_booking(self, payload):
+
+        r = requests.post(self.URL, json=payload)
+
+        return r

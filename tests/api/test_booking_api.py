@@ -23,3 +23,26 @@ def test_get_booking_by_id():
     assert response.status_code == 200
 
     assert isinstance(response.json()['firstname'], str)
+
+def test_post():
+
+    payload = {
+    "firstname": "Andrew",
+    "lastname": "Krag",
+    "totalprice": 345,
+    "depositpaid": True,
+    "bookingdates": {
+        "checkin": "2020-01-01",
+        "checkout": "2022-01-01"
+    },
+    "additionalneeds": "Breakfast"
+}
+
+    booking_api = BookingApi()
+
+    response = booking_api.post_booking(payload)
+
+    assert response.status_code == 200
+
+    assert payload["firstname"] == response.json()['booking']['firstname']
+
