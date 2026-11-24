@@ -1,12 +1,14 @@
 from api.booking_api import BookingApi
 
-def test_get():
+
+def test_get_all_bookings():
 
     booking_api = BookingApi()
 
     response = booking_api.get_bookings()
 
     assert response.status_code == 200
+
 
 def test_get_booking_by_id():
 
@@ -16,27 +18,25 @@ def test_get_booking_by_id():
 
     bookings = bookings_response.json()
 
-    booking_id = bookings[0]['bookingid']
+    booking_id = bookings[0]["bookingid"]
 
     response = booking_api.get_booking_id(booking_id)
 
     assert response.status_code == 200
 
-    assert isinstance(response.json()['firstname'], str)
+    assert isinstance(response.json()["firstname"], str)
 
-def test_post():
+
+def test_create_booking():
 
     payload = {
-    "firstname": "Andrew",
-    "lastname": "Krag",
-    "totalprice": 345,
-    "depositpaid": True,
-    "bookingdates": {
-        "checkin": "2020-01-01",
-        "checkout": "2022-01-01"
-    },
-    "additionalneeds": "Breakfast"
-}
+        "firstname": "Andrew",
+        "lastname": "Krag",
+        "totalprice": 345,
+        "depositpaid": True,
+        "bookingdates": {"checkin": "2020-01-01", "checkout": "2022-01-01"},
+        "additionalneeds": "Breakfast",
+    }
 
     booking_api = BookingApi()
 
@@ -44,5 +44,12 @@ def test_post():
 
     assert response.status_code == 200
 
-    assert payload["firstname"] == response.json()['booking']['firstname']
+    assert response.json()["booking"]["firstname"] == payload["firstname"]
 
+    booking_id = response.json()["bookingid"]
+
+    booking_by_id = booking_api.get_booking_id(booking_id)
+
+    assert booking_by_id.status_code == 200
+
+    assert booking_by_id.json()["firstname"] == payload["firstname"]
