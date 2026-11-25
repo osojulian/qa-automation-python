@@ -69,26 +69,40 @@ def test_update_booking():
     credentials = {"username": "admin", "password": "password123"}
 
     update_booking = {
-        {
-            "firstname": "James",
-            "lastname": "Brown",
-            "totalprice": 111,
-            "depositpaid": True,
-            "bookingdates": {"checkin": "2018-01-01", "checkout": "2019-01-01"},
-            "additionalneeds": "Breakfast",
-        }
+        "firstname": "James",
+        "lastname": "Brown",
+        "totalprice": 111,
+        "depositpaid": True,
+        "bookingdates": {"checkin": "2018-01-01", "checkout": "2019-01-01"},
+        "additionalneeds": "Breakfast",
     }
 
     booking_api = BookingApi()
 
-    post_booking = booking_api.post_booking(booking_payload)
+    create_booking = booking_api.post_booking(booking_payload)
 
-    booking_id = post_booking.json()["bookingid"]
+    assert create_booking.status_code == 200
+
+    booking_id = create_booking.json()["bookingid"]
 
     post_token = booking_api.create_token(credentials)
 
+    assert post_token.status_code == 200
+
     token = post_token.json()["token"]
 
-    token_booking = booking_api.put_booking(booking_id, update_booking, token)
+    header = {'Cookie': f'token={token}'}
 
-    assert token_booking.status_code == 200
+    response = booking_api.put_booking(header, booking_id, update_booking)
+
+    response_put = response.json()
+
+    assert response.status_code == 200
+
+    assert response_put['firstname'] == update_booking['firstname']
+
+    response_id = booking_api.get_booking_id(booking_id)
+
+    assert response_id.status_code == 200
+
+    assert response_id.json() == update_booking
