@@ -28,8 +28,10 @@ class BookingApi:
 
         return r
 
-    def put_booking(self, token='token', booking_id='booking_id', update_booking='update_booking'):
+    def put_booking(self, token, booking_id, update_booking):
 
-        r = requests.put(f'{self.URL}/booking/{booking_id}', headers=token, json=update_booking)
+        headers = {'Cookie': f'token={token}'}
+
+        r = requests.put(f'{self.URL}/booking/{booking_id}', headers=headers, json=update_booking)
 
         return r

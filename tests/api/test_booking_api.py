@@ -9,6 +9,8 @@ def test_get_all_bookings():
 
     assert response.status_code == 200
 
+    assert isinstance(response.json(), list)
+
 
 def test_get_booking_by_id():
 
@@ -68,7 +70,7 @@ def test_update_booking():
 
     credentials = {"username": "admin", "password": "password123"}
 
-    update_booking = {
+    update_payload = {
         "firstname": "James",
         "lastname": "Brown",
         "totalprice": 111,
@@ -91,18 +93,16 @@ def test_update_booking():
 
     token = post_token.json()["token"]
 
-    header = {'Cookie': f'token={token}'}
-
-    response = booking_api.put_booking(header, booking_id, update_booking)
-
-    response_put = response.json()
+    response = booking_api.put_booking(token, booking_id, update_payload)
 
     assert response.status_code == 200
 
-    assert response_put['firstname'] == update_booking['firstname']
+    response_put = response.json()
+
+    assert response_put['firstname'] == update_payload['firstname']
 
     response_id = booking_api.get_booking_id(booking_id)
 
     assert response_id.status_code == 200
 
-    assert response_id.json() == update_booking
+    assert response_id.json() == update_payload
