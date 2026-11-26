@@ -96,6 +96,6 @@ def test_delete_booking(payload, token):
 
     assert response.status_code == 201
 
-    delete_booking = booking_api.get_booking_id(booking_id)
+    get_after_delete = booking_api.get_booking_id(booking_id)
 
-    assert delete_booking.status_code == 404
+    assert get_after_delete.status_code == 404
