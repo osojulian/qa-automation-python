@@ -1,5 +1,4 @@
 import pytest
-import requests
 
 from api.booking_api import BookingApi
 
@@ -29,6 +28,8 @@ def token(credentials):
     post_token = booking_api.create_token(credentials)
 
     assert post_token.status_code == 200
+
+    assert 'token' in post_token.json(), "Auth failed: no token in response"
 
     token = post_token.json()["token"]
 
