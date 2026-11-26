@@ -29,16 +29,7 @@ def test_get_booking_by_id():
     assert isinstance(response.json()["firstname"], str)
 
 
-def test_create_booking():
-
-    payload = {
-        "firstname": "Andrew",
-        "lastname": "Krag",
-        "totalprice": 345,
-        "depositpaid": True,
-        "bookingdates": {"checkin": "2020-01-01", "checkout": "2022-01-01"},
-        "additionalneeds": "Breakfast",
-    }
+def test_create_booking(payload):
 
     booking_api = BookingApi()
 
@@ -57,18 +48,7 @@ def test_create_booking():
     assert booking_by_id.json()["firstname"] == payload["firstname"]
 
 
-def test_update_booking():
-
-    booking_payload = {
-        "firstname": "Andrew",
-        "lastname": "Krag",
-        "totalprice": 345,
-        "depositpaid": True,
-        "bookingdates": {"checkin": "2020-01-01", "checkout": "2022-01-01"},
-        "additionalneeds": "Breakfast",
-    }
-
-    credentials = {"username": "admin", "password": "password123"}
+def test_update_booking(payload, token):
 
     update_payload = {
         "firstname": "James",
@@ -81,17 +61,11 @@ def test_update_booking():
 
     booking_api = BookingApi()
 
-    create_booking = booking_api.post_booking(booking_payload)
+    create_booking = booking_api.post_booking(payload)
 
     assert create_booking.status_code == 200
 
     booking_id = create_booking.json()["bookingid"]
-
-    post_token = booking_api.create_token(credentials)
-
-    assert post_token.status_code == 200
-
-    token = post_token.json()["token"]
 
     response = booking_api.put_booking(token, booking_id, update_payload)
 
@@ -99,7 +73,7 @@ def test_update_booking():
 
     response_put = response.json()
 
-    assert response_put['firstname'] == update_payload['firstname']
+    assert response_put["firstname"] == update_payload["firstname"]
 
     response_id = booking_api.get_booking_id(booking_id)
 
