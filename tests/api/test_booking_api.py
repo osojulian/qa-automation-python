@@ -80,3 +80,22 @@ def test_update_booking(payload, token):
     assert response_id.status_code == 200
 
     assert response_id.json() == update_payload
+
+
+def test_delete_booking(payload, token):
+
+    booking_api = BookingApi()
+
+    create_booking = booking_api.post_booking(payload)
+
+    assert create_booking.status_code == 200
+
+    booking_id = create_booking.json()["bookingid"]
+
+    response = booking_api.delete_booking(token, booking_id)
+
+    assert response.status_code == 201
+
+    delete_booking = booking_api.get_booking_id(booking_id)
+
+    assert delete_booking.status_code == 404
