@@ -38,3 +38,11 @@ class BookingApi:
         )
 
         return r
+
+    def delete_booking(self, token, booking_id):
+
+        headers = {"Cookie": f"token={token}"}
+
+        r = requests.delete(f"{self.URL}/booking/{booking_id}", headers=headers)
+
+        return r
