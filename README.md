@@ -1,5 +1,8 @@
 # QA Automation Framework with Python
 
+![API tests](https://github.com/osojulian/qa-automation-python/actions/workflows/api-tests.yml/badge.svg)
+
+
 Automated tests built with Python and pytest:
 
 - **UI tests** for [SauceDemo](https://www.saucedemo.com/) with Selenium, following the Page Object Model (POM).
